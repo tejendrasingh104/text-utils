@@ -10,6 +10,14 @@ export default function TextForm(props) {
         let newText = text.toLowerCase();
         setText(newText);
     }
+    const handleClear = () => {
+        let newText = ""
+        setText(newText);
+    }
+    const handleRemoveExtraSpace = () => {
+        let newText = text.trim().split(' ').filter(word=>word!=='').join(' ')
+        setText(newText);
+    }
     const handleOnChange = (e) => {
         // console.log('onchange clicked')
         setText(e.target.value)
@@ -23,10 +31,12 @@ export default function TextForm(props) {
         <div className="container">
             <h1>{props.heading}</h1>
             <div className="mb-3">
-            <textarea className="form-control" value={text} onChange={handleOnChange} id='mybox' rows='8'></textarea>
+            <textarea className="form-control" value={text} placeholder={'enter your text'} onChange={handleOnChange} id='mybox' rows='8'></textarea>
             </div>
-            <button className="btn btn-primary" onClick={handleUpClick}>UpperCase</button>
+            <button className="btn btn-primary mx-1" onClick={handleUpClick}>UpperCase</button>
             <button className="btn btn-primary mx-1" onClick={handleLowClick}>LowerCase</button>
+            <button className="btn btn-primary mx-1" onClick={handleClear}>Clear</button>
+            <button className="btn btn-primary mx-1" onClick={handleRemoveExtraSpace}>Remove Extra Space</button>
         </div>
         <div className="container my-2">
             <h2>Your Text Summary</h2>
